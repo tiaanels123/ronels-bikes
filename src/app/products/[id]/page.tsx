@@ -17,7 +17,11 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 
-export default function ProductDetailPage({ params }: { params: { id: string } }) {
+interface ProductPageProps {
+  params: { id: string };
+}
+
+export default function ProductDetailPage({ params }: ProductPageProps) {
   const { addItem } = useCart();
   const { toast } = useToast();
   const product = products.find((p) => p.id === params.id);
