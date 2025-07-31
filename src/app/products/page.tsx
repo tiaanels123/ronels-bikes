@@ -2,12 +2,12 @@ import { products } from '@/lib/products';
 import ProductCard from '@/components/products/ProductCard';
 import type { Category } from '@/lib/types';
 
-export default function ProductsPage({
+export default async function ProductsPage({
   searchParams,
 }: {
   searchParams: { category?: Category };
 }) {
-  const { category } = searchParams;
+  const { category } = await searchParams;
   
   const filteredProducts = category 
     ? products.filter((p) => p.category === category) 

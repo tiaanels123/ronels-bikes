@@ -11,9 +11,8 @@ export default function Home() {
         <Image
           src="/Logo.png"
           alt="Cyclist riding on a scenic route"
-          layout="fill"
-          objectFit="cover"
-          className="opacity-20"
+          fill
+          className="opacity-20 object-cover"
           data-ai-hint="cyclist scenic route"
         />
         <div className="relative container mx-auto px-4 md:px-6 h-full flex flex-col items-center justify-center text-center">
