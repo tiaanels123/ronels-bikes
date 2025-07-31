@@ -1,96 +1,127 @@
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, Mountain, Wrench, Package } from 'lucide-react';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { ArrowRight, Mountain, Wrench, Package, Bike, ShieldCheck, Award, Truck } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="flex flex-col">
-      <section className="relative w-full h-[60vh] bg-primary text-primary-foreground">
+    <div className="flex flex-col bg-background">
+      {/* Hero Section */}
+      <section className="relative w-full h-[70vh] text-white">
         <Image
-          src="/Logo.png"
-          alt="Cyclist riding on a scenic route"
+          src="https://images.unsplash.com/photo-1654085888334-bc4b03bcbf10?q=80&w=1287&auto=format&fit=crop"
+          alt="A cyclist on a scenic mountain road"
           fill
-          className="opacity-20 object-cover"
-          data-ai-hint="cyclist scenic route"
+          className="object-cover"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/20" />
         <div className="relative container mx-auto px-4 md:px-6 h-full flex flex-col items-center justify-center text-center">
-          <h1 className="text-4xl md:text-6xl font-headline font-bold mb-4 text-white drop-shadow-lg">
-            Find Your Perfect Ride
+          <h1 className="text-4xl md:text-6xl font-headline font-bold mb-4 drop-shadow-lg">
+            Your Adventure Awaits
           </h1>
-          <p className="text-lg md:text-xl max-w-2xl mb-8 text-primary-foreground/90 drop-shadow-md">
-            Explore our collection of world-class bikes, parts, and accessories. Built for performance, designed for you.
+          <p className="text-lg md:text-xl max-w-3xl mb-8 drop-shadow-md">
+            Discover premium motorbikes and gear for every journey.
           </p>
           <Link href="/products" passHref>
-            <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-              Shop All Products <ArrowRight className="ml-2" />
+            <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg py-6 px-8 rounded-full transition-transform hover:scale-105">
+              Explore Collection <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </Link>
         </div>
       </section>
 
-      <section className="py-12 md:py-20 bg-background">
+      {/* Featured Products Section */}
+      <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
-          <h2 className="text-3xl md:text-4xl font-headline font-bold text-center mb-12">
-            Shop by Category
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <CategoryCard
-              href="/products?category=bikes"
-              imageSrc="https://placehold.co/600x400.png"
-              imageHint="mountain bike"
-              title="Bikes"
-              description="From rugged mountain trails to smooth city streets, find the bike that's right for you."
-              icon={Mountain}
-            />
-            <CategoryCard
-              href="/products?category=parts"
-              imageSrc="https://placehold.co/600x400.png"
-              imageHint="bicycle parts"
-              title="Parts"
-              description="Upgrade and maintain your ride with our high-quality components and spare parts."
-              icon={Wrench}
-            />
-            <CategoryCard
-              href="/products?category=accessories"
-              imageSrc="https://placehold.co/600x400.png"
-              imageHint="cycling accessories"
-              title="Accessories"
-              description="Helmets, apparel, and all the gear you need to enhance your cycling experience."
-              icon={Package}
-            />
+          <h2 className="text-3xl md:text-4xl font-headline font-bold text-center mb-12 text-primary">Featured Products</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <ProductCard name="ECO 100 Dulux" price="$2,499" imageSrc="https://images.unsplash.com/photo-1685478565312-2ab3cb198d8b?q=80&w=2671&auto=format&fit=crop" />
+            <ProductCard name="ECO 150" price="$1,899" imageSrc="https://images.unsplash.com/photo-1648300119079-792d50efce72?q=80&w=2670&auto=format&fit=crop" />
+            <ProductCard name="ECO 150TR Trail" price="$2,199" imageSrc="https://images.unsplash.com/photo-1657645157714-36cda0e30794?q=80&w=1334&auto=format&fit=crop" />
+            <ProductCard name="XPluse 350" price="$1,200" imageSrc="https://images.unsplash.com/photo-1564347288823-dcdd367f3847?w=900&auto=format&fit=crop" />
           </div>
         </div>
       </section>
+
+      {/* Why Choose Us Section */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-4 md:px-6">
+          <h2 className="text-3xl md:text-4xl font-headline font-bold text-center mb-12 text-primary">Why Choose Ronel's Bikes?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+            <Feature icon={Award} title="Quality Craftsmanship" description="We source only the highest quality motorbikes and parts, ensuring peak performance and durability." />
+            <Feature icon={ShieldCheck} title="Expert Support" description="Our team of motorbike enthusiasts is here to help you find the perfect gear and answer any questions." />
+            <Feature icon={Truck} title="Fast & Reliable Shipping" description="Get your gear delivered to your doorstep quickly and securely, so you can start your next adventure." />
+          </div>
+        </div>
+      </section>
+
+      {/* Shop by Category Section */}
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4 md:px-6">
+          <h2 className="text-3xl md:text-4xl font-headline font-bold text-center mb-12 text-primary">Shop by Category</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <CategoryCard href="/products?category=bikes" imageSrc="https://images.unsplash.com/photo-1727784658332-d5adfdf4d3bc?q=80&w=1287&auto=format&fit=crop" title="Bikes" description="Find the perfect motorbike for any road, from winding highways to city streets." icon={Bike} />
+            <CategoryCard href="/products?category=parts" imageSrc="https://images.unsplash.com/photo-1637640125496-31852f042a60?q=80&w=1287&auto=format&fit=crop" title="Parts" description="Upgrade and maintain your ride with our high-quality components." icon={Wrench} />
+          </div>
+        </div>
+      </section>
+
+
     </div>
   );
 }
 
-function CategoryCard({ href, imageSrc, imageHint, title, description, icon: Icon }: { href: string; imageSrc: string; imageHint: string; title: string; description: string; icon: React.ElementType }) {
+function CategoryCard({ href, imageSrc, title, description, icon: Icon }: { href: string; imageSrc: string; title: string; description: string; icon: React.ElementType }) {
   return (
-    <Link href={href} passHref>
-      <Card className="overflow-hidden group transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-        <CardContent className="p-0">
-          <div className="relative">
-            <Image
-              src={imageSrc}
-              alt={title}
-              width={600}
-              height={400}
-              className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-              data-ai-hint={imageHint}
-            />
-          </div>
-          <div className="p-6 bg-card">
-            <div className="flex items-center mb-2">
-              <Icon className="w-6 h-6 mr-3 text-primary" />
-              <h3 className="text-2xl font-headline font-semibold">{title}</h3>
-            </div>
-            <p className="text-muted-foreground">{description}</p>
-          </div>
+    <Link href={href} passHref className="block group">
+      <Card className="overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-2 bg-white">
+        <div className="relative h-64 w-full">
+          <Image src={imageSrc} alt={title} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
+        </div>
+        <CardHeader>
+          <CardTitle className="flex items-center text-2xl font-headline">
+            <Icon className="w-7 h-7 mr-3 text-accent" />
+            {title}
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="flex-grow">
+          <p className="text-muted-foreground">{description}</p>
         </CardContent>
       </Card>
     </Link>
+  );
+}
+
+function ProductCard({ name, price, imageSrc }: { name: string; price: string; imageSrc: string }) {
+  return (
+    <Card className="overflow-hidden group transition-all duration-300 hover:shadow-xl hover:-translate-y-2 bg-white">
+      <div className="relative h-64 w-full">
+        <Image src={imageSrc} alt={name} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
+      </div>
+      <CardHeader>
+        <CardTitle className="text-xl font-headline truncate">{name}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p className="text-lg font-semibold text-primary">{price}</p>
+      </CardContent>
+      <CardFooter>
+        <Button className="w-full bg-primary hover:bg-primary/90">
+          <Bike className="mr-2 h-4 w-4" /> View Details
+        </Button>
+      </CardFooter>
+    </Card>
+  );
+}
+
+function Feature({ icon: Icon, title, description }: { icon: React.ElementType, title: string, description: string }) {
+  return (
+    <div className="flex flex-col items-center">
+      <div className="bg-accent text-accent-foreground rounded-full p-4 mb-4">
+        <Icon className="w-8 h-8" />
+      </div>
+      <h3 className="text-xl font-headline font-semibold mb-2 text-primary">{title}</h3>
+      <p className="text-muted-foreground max-w-xs">{description}</p>
+    </div>
   );
 }

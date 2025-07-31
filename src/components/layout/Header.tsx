@@ -24,7 +24,6 @@ export default function Header() {
           <nav className="hidden md:flex gap-6 items-center">
             <NavLink href="/products?category=bikes">Bikes</NavLink>
             <NavLink href="/products?category=parts">Parts</NavLink>
-            <NavLink href="/products?category=accessories">Accessories</NavLink>
           </nav>
           <div className="flex items-center gap-4">
             <Button

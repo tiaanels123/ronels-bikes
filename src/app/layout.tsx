@@ -8,7 +8,7 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: "Ronel's Bikes Online",
-  description: 'High-quality bikes, parts, and accessories.',
+  description: 'High-quality bikes andparts.',
 };
 
 export default function RootLayout({
