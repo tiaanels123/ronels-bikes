@@ -1,0 +1,31 @@
+import React from 'react';
+
+/**
+ * Custom Bike Logo SVG Component - FINAL VERSION
+ *
+ * This version has been fully cleaned to ensure it works correctly with Tailwind CSS.
+ * 1. Removed the internal <defs> and <style> block that hardcoded the color.
+ * 2. Removed the `class="st0"` attribute from the path.
+ * 3. Added `fillRule="evenodd"` to the path. This is the crucial property that
+ *    tells the SVG to render the inner shape as a transparent "hole" instead of
+ *    filling it in.
+ */
+const BikeLogo = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    id="BikeLogo"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1000 663.69"
+    {...props}
+  >
+    <path
+      // This tells the SVG how to handle overlapping shapes. "evenodd" creates the cutout.
+      fillRule="evenodd"
+      // This allows the color to be set by a CSS class (like `fill-white`).
+      fill="currentColor"
+      // This is the combined path data for the outer shape and the inner cutout.
+      d="M857.74,91.97c99.13,71.1,35.43,195.93-11.65,257.4-58.48,76.36-144.33,147.77-272.07,203.04-60.75,26.29-119.84,44.05-177.23,53.3-237.93,38.31-292.12-68.24-301.39-97.74-19.77-62.96,17.11-134.78,61.56-192.81,77.1-100.67,194.25-173.53,284.18-211.09,57.45-24,291.25-101.99,416.6-12.09ZM840.12,140.08c-17.79-80.93-144.8-65.43-191.2-54.79-41.25,9.46-82.49,26.14-123.74,50.03-31.34,17.85-62,37.43-91.99,58.72-30.03,21.3-58.26,42.9-84.72,64.78-26.49,21.89-50.5,43.73-72,65.49-21.54,21.76-39.68,42.31-54.5,61.66-43.58,56.92-63.02,102.17-58.24,135.74,4.75,33.57,31.8,54.49,81.09,62.78,35.21,5.92,72.9,3.09,113.11-8.45,40.18-11.56,85.22-31.44,135.11-59.68,59.36-33.69,115.1-72.19,167.25-115.47,52.11-43.28,95.82-87.96,131.14-134.08,39.66-51.79,55.89-94.03,48.7-126.72Z"
+    />
+  </svg>
+);
+
+export default BikeLogo;

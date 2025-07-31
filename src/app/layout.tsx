@@ -9,6 +9,9 @@ import './globals.css';
 export const metadata: Metadata = {
   title: "Ronel's Bikes Online",
   description: 'High-quality bikes andparts.',
+  icons: {
+    icon: '/icon.svg',
+  },
 };
 
 export default function RootLayout({
@@ -28,7 +31,7 @@ export default function RootLayout({
         <CartProvider>
           <div className="flex flex-col min-h-screen">
             <Header />
-            <main className="flex-grow">{children}</main>
+            <main className="flex-grow flex flex-col">{children}</main>
             <Footer />
           </div>
           <Chatbot />
