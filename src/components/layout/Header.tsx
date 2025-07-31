@@ -6,7 +6,7 @@ import { ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/useCart';
 import CartSheet from '@/components/cart/CartSheet';
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 
 // Your SVG logo converted to a reusable React component
 const Logo = (props: React.SVGProps<SVGSVGElement>) => (
@@ -52,10 +52,18 @@ export default function Header() {
             <Logo className="h-8 w-auto text-primary" />
           </Link>
           <nav className="hidden items-center gap-8 md:flex">
-            <NavLink href="/products?category=bikes">Bikes</NavLink>
-            <NavLink href="/products?category=parts">Parts</NavLink>
-            <NavLink href="/about">About Us</NavLink>
-            <NavLink href="/contact">Contact Us</NavLink>
+            <Suspense fallback={<span className="text-gray-600">Bikes</span>}>
+              <NavLink href="/products?category=bikes">Bikes</NavLink>
+            </Suspense>
+            <Suspense fallback={<span className="text-gray-600">Parts</span>}>
+              <NavLink href="/products?category=parts">Parts</NavLink>
+            </Suspense>
+            <Suspense fallback={<span className="text-gray-600">About Us</span>}>
+              <NavLink href="/about">About Us</NavLink>
+            </Suspense>
+            <Suspense fallback={<span className="text-gray-600">Contact Us</span>}>
+              <NavLink href="/contact">Contact Us</NavLink>
+            </Suspense>
           </nav>
           <div className="flex items-center gap-4">
             <Button

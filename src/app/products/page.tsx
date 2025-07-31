@@ -5,7 +5,7 @@ import type { Category } from '@/lib/types';
 export default async function ProductsPage({
   searchParams,
 }: {
-  searchParams: { category?: Category };
+  searchParams: Promise<{ category?: Category }>;
 }) {
   const { category } = await searchParams;
   

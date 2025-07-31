@@ -1,14 +1,8 @@
-'use client';
-
 import { products } from '@/lib/products';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { Button } from '@/components/ui/button';
 import { Badge } from "@/components/ui/badge";
 import { formatPrice } from '@/lib/utils';
-import { useCart } from '@/hooks/useCart';
-import { useToast } from '@/hooks/use-toast';
-import { ShoppingCart, CheckCircle } from 'lucide-react';
 import {
   Carousel,
   CarouselContent,
@@ -16,28 +10,17 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
+import AddToCartButton from '@/app/products/[id]/AddToCartButton';
 
-export default function ProductDetailPage({ params }: { params: { id: string } }) {
-  const { addItem } = useCart();
-  const { toast } = useToast();
-  const product = products.find((p) => p.id === params.id);
+export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const product = products.find((p) => p.id === id);
 
   if (!product) {
     notFound();
   }
 
-  const handleAddToCart = () => {
-    addItem(product);
-    toast({
-      title: "Added to cart!",
-      description: (
-        <div className="flex items-center">
-          <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
-          <span>{`${product.name} has been added to your shopping cart.`}</span>
-        </div>
-      ),
-    });
-  };
+
 
   return (
     <div className="container mx-auto px-4 md:px-6 py-12">
@@ -71,10 +54,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
                     <p className="text-3xl font-bold text-primary mt-2 mb-4">R {formatPrice(product.price)}</p>
           <p className="text-muted-foreground text-base mb-6">{product.description}</p>
           
-          <Button onClick={handleAddToCart} size="lg" className="mb-8 w-full md:w-auto bg-primary hover:bg-primary/90">
-            <ShoppingCart className="mr-2 h-5 w-5" />
-            Add to Cart
-          </Button>
+          <AddToCartButton product={product} />
 
           <div>
             <h2 className="text-xl font-bold font-headline mb-4">Specifications</h2>
