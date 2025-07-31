@@ -9,7 +9,7 @@ export default function Home() {
     <div className="flex flex-col">
       <section className="relative w-full h-[60vh] bg-primary text-primary-foreground">
         <Image
-          src="https://placehold.co/1920x1080.png"
+          src="/Logo.png"
           alt="Cyclist riding on a scenic route"
           layout="fill"
           objectFit="cover"
