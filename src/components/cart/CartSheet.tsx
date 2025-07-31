@@ -9,6 +9,7 @@ import {
   SheetDescription,
 } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
+import { formatPrice } from "@/lib/utils";
 import { useCart } from '@/hooks/useCart';
 import { Separator } from '@/components/ui/separator';
 import { Minus, Plus, Trash2, ShoppingCart } from 'lucide-react';
@@ -51,7 +52,7 @@ export default function CartSheet({ open, onOpenChange }: CartSheetProps) {
                     <div className="flex-1">
                       <p className="font-semibold">{item.name}</p>
                       <p className="text-sm text-muted-foreground">
-                        ${item.price.toFixed(2)}
+                        R {formatPrice(item.price)}
                       </p>
                       <div className="mt-2 flex items-center justify-between">
                         <div className="flex items-center gap-2">
@@ -92,7 +93,7 @@ export default function CartSheet({ open, onOpenChange }: CartSheetProps) {
               <div className="w-full">
                 <div className="flex justify-between font-semibold text-lg mb-4">
                   <span>Subtotal</span>
-                  <span>${total.toFixed(2)}</span>
+                  <span>R {formatPrice(total)}</span>
                 </div>
                 <Link href="/cart" passHref legacyBehavior>
                     <a onClick={() => onOpenChange(false)}>

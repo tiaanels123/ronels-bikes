@@ -4,7 +4,8 @@ import { products } from '@/lib/products';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { Badge } from "@/components/ui/badge";
+import { formatPrice } from '@/lib/utils';
 import { useCart } from '@/hooks/useCart';
 import { useToast } from '@/hooks/use-toast';
 import { ShoppingCart, CheckCircle } from 'lucide-react';
@@ -67,7 +68,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
             {product.category}
           </Badge>
           <h1 className="text-3xl lg:text-4xl font-bold font-headline">{product.name}</h1>
-          <p className="text-3xl font-bold text-primary mt-2 mb-4">${product.price.toFixed(2)}</p>
+                    <p className="text-3xl font-bold text-primary mt-2 mb-4">R {formatPrice(product.price)}</p>
           <p className="text-muted-foreground text-base mb-6">{product.description}</p>
           
           <Button onClick={handleAddToCart} size="lg" className="mb-8 w-full md:w-auto bg-primary hover:bg-primary/90">

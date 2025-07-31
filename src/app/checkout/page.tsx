@@ -4,7 +4,8 @@ import { useCart } from '@/hooks/useCart';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
+import { Separator } from "@/components/ui/separator";
+import { formatPrice } from '@/lib/utils';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -207,7 +208,7 @@ export default function CheckoutPage() {
                       </div>
                       <span className="font-medium">{item.name}</span>
                     </div>
-                    <span>${(item.price * item.quantity).toFixed(2)}</span>
+                                        <span>R {formatPrice(item.price * item.quantity)}</span>
                   </div>
                 ))}
               </div>
@@ -215,7 +216,7 @@ export default function CheckoutPage() {
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
-                  <span>${total.toFixed(2)}</span>
+                                    <span>R {formatPrice(total)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Shipping</span>
@@ -224,7 +225,7 @@ export default function CheckoutPage() {
                 <Separator className="my-2" />
                 <div className="flex justify-between font-bold text-lg">
                   <span>Total</span>
-                  <span>${total.toFixed(2)}</span>
+                                    <span>R {formatPrice(total)}</span>
                 </div>
               </div>
             </CardContent>

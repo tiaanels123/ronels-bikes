@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
+import { formatPrice } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import type { Product } from '@/lib/types';
 import { ArrowRight } from 'lucide-react';
@@ -37,7 +38,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               {product.description}
             </p>
             <div className="flex justify-between items-center pt-2">
-              <p className="text-xl font-bold text-primary">${product.price.toFixed(2)}</p>
+                            <p className="text-xl font-bold text-primary">R {formatPrice(product.price)}</p>
               <Button variant="ghost" size="sm">
                 View Details <ArrowRight className="ml-2 h-4 w-4" />
               </Button>

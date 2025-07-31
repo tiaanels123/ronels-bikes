@@ -1,7 +1,8 @@
 'use client';
 
 import { useCart } from '@/hooks/useCart';
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
+import { formatPrice } from "@/lib/utils";
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -67,7 +68,7 @@ export default function CartPage() {
                           />
                         </div>
                       </TableCell>
-                      <TableCell className="text-right">${(item.price * item.quantity).toFixed(2)}</TableCell>
+                                            <TableCell className="text-right">R {formatPrice(item.price * item.quantity)}</TableCell>
                       <TableCell className="text-right">
                         <Button variant="ghost" size="icon" onClick={() => removeItem(item.id)}>
                           <Trash2 className="h-4 w-4 text-muted-foreground" />
@@ -88,7 +89,7 @@ export default function CartPage() {
             <CardContent className="space-y-4">
               <div className="flex justify-between">
                 <span>Subtotal</span>
-                <span>${total.toFixed(2)}</span>
+                <span>R {formatPrice(total)}</span>
               </div>
               <div className="flex justify-between">
                 <span>Shipping</span>
@@ -96,7 +97,7 @@ export default function CartPage() {
               </div>
               <div className="flex justify-between font-bold text-lg border-t pt-4">
                 <span>Total</span>
-                <span>${total.toFixed(2)}</span>
+                <span>R {formatPrice(total)}</span>
               </div>
             </CardContent>
             <CardFooter>

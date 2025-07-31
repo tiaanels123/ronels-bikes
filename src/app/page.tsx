@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Mountain, Wrench, Package, Bike, ShieldCheck, Award, Truck } from 'lucide-react';
+import { ArrowRight, Wrench, Bike, ShieldCheck, Award, Truck } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -36,10 +36,10 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6">
           <h2 className="text-3xl md:text-4xl font-headline font-bold text-center mb-12 text-primary">Featured Products</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <ProductCard name="ECO 100 Dulux" price="$2,499" imageSrc="https://images.unsplash.com/photo-1685478565312-2ab3cb198d8b?q=80&w=2671&auto=format&fit=crop" />
-            <ProductCard name="ECO 150" price="$1,899" imageSrc="https://images.unsplash.com/photo-1648300119079-792d50efce72?q=80&w=2670&auto=format&fit=crop" />
-            <ProductCard name="ECO 150TR Trail" price="$2,199" imageSrc="https://images.unsplash.com/photo-1657645157714-36cda0e30794?q=80&w=1334&auto=format&fit=crop" />
-            <ProductCard name="XPluse 350" price="$1,200" imageSrc="https://images.unsplash.com/photo-1564347288823-dcdd367f3847?w=900&auto=format&fit=crop" />
+            <ProductCard id="eco-100-dulux" name="ECO 100 Dulux" price="R 22,499" imageSrc="https://images.unsplash.com/photo-1685478565312-2ab3cb198d8b?q=80&w=2671&auto=format&fit=crop" />
+            <ProductCard id="eco-150" name="ECO 150" price="R 31,899" imageSrc="https://images.unsplash.com/photo-1648300119079-792d50efce72?q=80&w=2670&auto=format&fit=crop" />
+            <ProductCard id="eco-150tr-trail" name="ECO 150TR Trail" price="R 22,199" imageSrc="https://images.unsplash.com/photo-1657645157714-36cda0e30794?q=80&w=1334&auto=format&fit=crop" />
+            <ProductCard id="xpluse-350" name="XPluse 350" price="R 41,200" imageSrc="https://images.unsplash.com/photo-1564347288823-dcdd367f3847?w=900&auto=format&fit=crop" />
           </div>
         </div>
       </section>
@@ -50,8 +50,8 @@ export default function Home() {
           <h2 className="text-3xl md:text-4xl font-headline font-bold text-center mb-12 text-primary">Why Choose Ronel's Bikes?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
             <Feature icon={Award} title="Quality Craftsmanship" description="We source only the highest quality motorbikes and parts, ensuring peak performance and durability." />
-            <Feature icon={ShieldCheck} title="Expert Support" description="Our team of motorbike enthusiasts is here to help you find the perfect gear and answer any questions." />
-            <Feature icon={Truck} title="Fast & Reliable Shipping" description="Get your gear delivered to your doorstep quickly and securely, so you can start your next adventure." />
+            <Feature icon={ShieldCheck} title="Expert Support" description="Our team of motorbike enthusiasts is here to help you find the perfect bike and answer any questions." />
+            <Feature icon={Truck} title="Fast & Reliable Shipping" description="Get your parts delivered to your doorstep quickly and securely, so you can start your next adventure." />
           </div>
         </div>
       </section>
@@ -93,24 +93,26 @@ function CategoryCard({ href, imageSrc, title, description, icon: Icon }: { href
   );
 }
 
-function ProductCard({ name, price, imageSrc }: { name: string; price: string; imageSrc: string }) {
+function ProductCard({ id, name, price, imageSrc }: { id: string; name: string; price: string; imageSrc: string }) {
   return (
-    <Card className="overflow-hidden group transition-all duration-300 hover:shadow-xl hover:-translate-y-2 bg-white">
-      <div className="relative h-64 w-full">
-        <Image src={imageSrc} alt={name} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
-      </div>
-      <CardHeader>
-        <CardTitle className="text-xl font-headline truncate">{name}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p className="text-lg font-semibold text-primary">{price}</p>
-      </CardContent>
-      <CardFooter>
-        <Button className="w-full bg-primary hover:bg-primary/90">
-          <Bike className="mr-2 h-4 w-4" /> View Details
-        </Button>
-      </CardFooter>
-    </Card>
+    <Link href={`/products/${id}`}>
+      <Card className="group overflow-hidden transition-shadow duration-300 hover:shadow-lg h-full">
+        <div className="relative h-64 w-full">
+          <Image src={imageSrc} alt={name} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
+        </div>
+        <CardHeader>
+          <CardTitle className="text-xl font-headline truncate">{name}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-lg font-semibold text-primary">{price}</p>
+        </CardContent>
+        <CardFooter>
+          <Button className="w-full bg-primary hover:bg-primary/90">
+            <Bike className="mr-2 h-4 w-4" /> View Details
+          </Button>
+        </CardFooter>
+      </Card>
+    </Link>
   );
 }
 
