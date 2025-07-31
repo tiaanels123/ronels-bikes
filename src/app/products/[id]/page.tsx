@@ -17,11 +17,7 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 
-interface ProductPageProps {
-  params: { id: string };
-}
-
-export default function ProductDetailPage({ params }: ProductPageProps) {
+export default function ProductDetailPage({ params }: { params: { id: string } }) {
   const { addItem } = useCart();
   const { toast } = useToast();
   const product = products.find((p) => p.id === params.id);
@@ -33,13 +29,13 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
   const handleAddToCart = () => {
     addItem(product);
     toast({
-      title: (
+      title: "Added to cart!",
+      description: (
         <div className="flex items-center">
           <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
-          <span>Added to cart!</span>
+          <span>{`${product.name} has been added to your shopping cart.`}</span>
         </div>
       ),
-      description: `${product.name} has been added to your shopping cart.`,
     });
   };
 

@@ -8,8 +8,8 @@
  * - ProductSuggestionChatbotOutput - The return type for the productSuggestionChatbot function.
  */
 
-import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
+import { ai } from '@/ai/genkit';
+import { z } from 'genkit';
 
 const ProductSuggestionChatbotInputSchema = z.object({
   query: z.string().describe('The customer query for product suggestions.'),
@@ -21,29 +21,25 @@ const ProductSuggestionChatbotOutputSchema = z.object({
 });
 export type ProductSuggestionChatbotOutput = z.infer<typeof ProductSuggestionChatbotOutputSchema>;
 
-export async function productSuggestionChatbot(input: ProductSuggestionChatbotInput): Promise<ProductSuggestionChatbotOutput> {
-  return productSuggestionChatbotFlow(input);
-}
-
 const prompt = ai.definePrompt({
   name: 'productSuggestionChatbotPrompt',
-  input: {schema: ProductSuggestionChatbotInputSchema},
-  output: {schema: ProductSuggestionChatbotOutputSchema},
+  input: { schema: ProductSuggestionChatbotInputSchema },
+  output: { schema: ProductSuggestionChatbotOutputSchema },
   prompt: `You are a chatbot assistant for Ronel's Bikes Online. Your job is to provide product suggestions based on customer queries.
 
 Customer Query: {{{query}}}
 
-Suggestions:`, 
+Suggestions:`,
 });
 
-const productSuggestionChatbotFlow = ai.defineFlow(
+export const productSuggestionChatbot = ai.defineFlow(
   {
     name: 'productSuggestionChatbotFlow',
     inputSchema: ProductSuggestionChatbotInputSchema,
     outputSchema: ProductSuggestionChatbotOutputSchema,
   },
-  async input => {
-    const {output} = await prompt(input);
+  async (input) => {
+    const { output } = await prompt(input);
     return output!;
   }
 );
